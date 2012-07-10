@@ -14,7 +14,21 @@ table(usa.data$SEX)
 sex <- factor(usa.data$SEX, labels = c("man", "woman"))
 # Now for state, where in IPUM, 27 = MN, 55 = WI
 state <- factor(usa.data$STATEFIP, labels = c("mn", "wi"))
-# Now for education
-edu <- factor(usa.data$EDUC), labels = c("college.one", "grade.four.or.less", 
-+ "grade.twelve", "college.five.plus" "grade.five.eight," "college.four", 
-+ "grade.nine" "NA", )
+# Now for education, college.number = number of years of college edu.
+#                    grade.number = last complete grade of grade school
+# The question is, how detailed should we be? Is it ok to aggregate to a certain
+# level, for example, have "less than high school" "some high school" "high school"
+# "some college" "college" "more than college," as supposed to 12 dif. categories
+# like below:
+
+edu <- factor(usa.data$EDUC)
+levels(edu) = levels(edu) = c("NA", "grade.four.or.less", "grade.five.eight", 
+"grade.nine", "grade.eleven", "grade.ten", "grade.twelve", "college.one", 
+"college.two", "college.four", "college.fiveplus")
+
+# Since this is a complex factor, I spent some time comparing the data with 
+# the factor to make sure all the values matched up correctly.
+
+# Now for the degree of field. I'm going to use the less detailed version with
+# *only* 38 categories. My only concern is that there will be so many levels in
+# the factor that it'll be hard to keep track
