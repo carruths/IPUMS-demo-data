@@ -11,9 +11,9 @@ usa.data <- read.csv("usa_00005.csv")
 names(usa.data)
 table(usa.data$SEX)
 # In IPUMS 1 = Male, 2 = Female, created factor "sex" using those values
-sex <- factor(usa.data$SEX, labels = c("man", "woman"))
+usa.data$sex <- factor(usa.data$SEX, labels = c("man", "woman"))
 # Now for state, where in IPUM, 27 = MN, 55 = WI
-state <- factor(usa.data$STATEFIP, labels = c("mn", "wi"))
+usa.data$state <- factor(usa.data$STATEFIP, labels = c("mn", "wi"))
 # Now for education, college.number = number of years of college edu.
 #                    grade.number = last complete grade of grade school
 # The question is, how detailed should we be? Is it ok to aggregate to a certain
@@ -21,8 +21,8 @@ state <- factor(usa.data$STATEFIP, labels = c("mn", "wi"))
 # "some college" "college" "more than college," as supposed to 12 dif. categories
 # like below:
 
-edu <- factor(usa.data$EDUC)
-levels(edu) = levels(edu) = c("NA", "grade.four.or.less", "grade.five.eight", 
+usa.data$edu <- factor(usa.data$EDUC)
+levels(edu) = c("NA", "grade.four.or.less", "grade.five.eight", 
 "grade.nine", "grade.eleven", "grade.ten", "grade.twelve", "college.one", 
 "college.two", "college.four", "college.fiveplus")
 
@@ -31,4 +31,7 @@ levels(edu) = levels(edu) = c("NA", "grade.four.or.less", "grade.five.eight",
 
 # Now for the degree of field. I'm going to use the less detailed version with
 # *only* 38 categories. My only concern is that there will be so many levels in
-# the factor that it'll be hard to keep track
+# the factor that it'll be hard to keep track of all of them. 
+
+degreefield <- factor(usa.data$DEGFIELD)
+levels(degreefield) = c("NA", )
