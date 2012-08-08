@@ -21,10 +21,19 @@ usa.data$state <- factor(usa.data$STATEFIP, labels = c("mn", "wi"))
 # "some college" "college" "more than college," as supposed to 12 dif. categories
 # like below:
 
-usa.data$edu <- factor(usa.data$EDUC)
-levels(edu) = c("NA", "grade.four.or.less", "grade.five.eight", 
-"grade.nine", "grade.eleven", "grade.ten", "grade.twelve", "college.one", 
-"college.two", "college.four", "college.fiveplus")
+usa.data$edu <- factor(usa.data$EDUC, levels = 0:11)
+levels(usa.data$edu) = c("N/A or no schooling",
+                         "Nursery school to grade 4",
+                         "Grade 5, 6, 7, or 8",
+                         "Grade 9",
+                         "Grade 10",
+                         "Grade 11",
+                         "Grade 12",
+                         "1 year of college",
+                         "2 years of college",
+                         "3 years of college",
+                         "4 years of college",
+                         "5+ years of college")
 
 # Since this is a complex factor, I spent some time comparing the data with 
 # the factor to make sure all the values matched up correctly.
